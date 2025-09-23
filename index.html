@@ -14,204 +14,415 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap">
     <style>
-        <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Free online random number generator tool. Generate random numbers between any range for games, contests, statistics, and more.">
-    <meta name="keywords" content="random number generator, random number, number generator, randomizer, online tool, probability, games, statistics">
-    <meta name="author" content="Random Number Generator">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Random Number Generator - Free Online Tool">
-    <meta property="og:description" content Generate random numbers between any range for games, contests, statistics, and more.">
-    <meta property="og:type" content="website">
-    <title>Random Number Generator - Free Online Tool | Generate Random Numbers</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap">
-    <link rel="stylesheet" href="CSS/style.css">
-</head>
-<body>
-    <div class="header-section">
-        <div class="container">
-            <h1><i class="fas fa-dice"></i> Random Number Generator</h1>
-        </div>
-    </div>
+       :root {
+    --primary: #8A2BE2;
+    --secondary: #FF6B8B;
+    --accent: #00D4FF;
+    --dark: #1A1A2E;
+    --darker: #0F0F1B;
+    --light: #F0F0F7;
+    --success: #4CC9F0;
+    --text: #E6E6E6;
+    --card-bg: #252548;
+}
 
-    <main class="container">
-        <section class="intro-section fade-in">
-            <h2>Generate Random Numbers Instantly</h2>
-            <p>Our free online tool helps you generate random numbers for games, contests, statistical sampling, and more.</p>
-            <p>Simply enter your range and let our algorithm do the rest!</p>
-        </section>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        <section class="body-sect">
-            <div class="card fade-in">
-                <h3>Enter Your Range</h3>
-                <div class="input-group">
-                    <label for="fnumber"><i class="fas fa-minus"></i> Minimum Number:</label>
-                    <input type="number" id="fnumber" placeholder="e.g., 1" value="1">
-                </div>
+body {
+    background: linear-gradient(135deg, var(--darker), var(--dark));
+    font-family: 'Poppins', sans-serif;
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
 
-                <div class="input-group">
-                    <label for="lNumber"><i class="fas fa-plus"></i> Maximum Number:</label>
-                    <input type="number" id="lNumber" placeholder="e.g., 100" value="100">
-                </div>
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
 
-                <div class="button-container">
-                    <button class="generate-btn" onclick="randomNumber()">
-                        <i class="fas fa-random"></i> Generate Number
-                    </button>
-                </div>
-            </div>
-           
-            <div class="card fade-in">
-                <div class="result-container">
-                    <p class="result-label">Your Random Number:</p>
-                    <p class="number-text" id="number-text">-</p>
-                    <p id="range-info">Enter values and click generate</p>
-                </div>
-            </div>
-        </section>
+/* Header */
+.header-section {
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    padding: 25px 0;
+    text-align: center;
+    color: #fff;
+    font-size: 26px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    box-shadow: 0px 4px 20px rgba(138, 43, 226, 0.4);
+    position: relative;
+    overflow: hidden;
+}
 
-        <section class="history-section fade-in">
-            <h3><i class="fas fa-history"></i> Generation History</h3>
-            <ul id="history-list">
-                <li class="no-history">No generations yet</li>
-            </ul>
-        </section>
+.header-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+    background-size: cover;
+}
 
-        <section class="features-section">
-            <div class="feature-card fade-in">
-                <i class="fas fa-gamepad"></i>
-                <h4>Perfect for Games</h4>
-                <p>Ideal for board games, raffles, and random selection</p>
-            </div>
-            <div class="feature-card fade-in">
-                <i class="fas fa-chart-bar"></i>
-                <h4>Statistical Sampling</h4>
-                <p>Great for research, surveys, and random sampling</p>
-            </div>
-            <div class="feature-card fade-in">
-                <i class="fas fa-lock"></i>
-                <h4>Secure & Fair</h4>
-                <p>True random number generation algorithm</p>
-            </div>
-        </section>
-    </main>
+.header-section h1 {
+    font-family: 'Montserrat', sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
 
-    <footer>
-        <div class="container">
-            <p>Random Number Generator Tool &copy; 2023</p>
-            <p>Perfect for games, contests, statistical sampling, and decision making</p>
-        </div>
-    </footer>
+/* Main Content */
+main {
+    flex: 1;
+    padding: 40px 0;
+}
 
-    <script>
-        // Array to store generation history
-        let history = [];
-        const historySize = 10; // Number of history items to keep
-        
-        function randomNumber() {
-            // Get input values
-            let fNum = parseInt(document.getElementById("fnumber").value);
-            let lNum = parseInt(document.getElementById("lNumber").value);
-            
-            // Validate inputs
-            if (isNaN(fNum) || isNaN(lNum)) {
-                alert("Please enter valid numbers in both fields.");
-                return;
-            }
-            
-            if (fNum >= lNum) {
-                alert("The minimum number must be less than the maximum number.");
-                return;
-            }
-            
-            // Generate random number
-            let random = Math.floor(Math.random() * (lNum - fNum + 1)) + fNum;
-            
-            // Display the random number
-            let numberElement = document.getElementById("number-text");
-            numberElement.innerText = random;
-            
-            // Add animation
-            numberElement.classList.remove("pulse");
-            void numberElement.offsetWidth; // Trigger reflow
-            numberElement.classList.add("pulse");
-            
-            // Update range info
-            document.getElementById("range-info").innerText = `Between ${fNum} and ${lNum}`;
-            
-            // Add to history
-            addToHistory(fNum, lNum, random);
-        }
-        
-        function addToHistory(min, max, result) {
-            // Create history entry
-            const entry = {
-                min: min,
-                max: max,
-                result: result,
-                timestamp: new Date()
-            };
-            
-            // Add to beginning of history array
-            history.unshift(entry);
-            
-            // Limit history size
-            if (history.length > historySize) {
-                history.pop();
-            }
-            
-            // Update history display
-            updateHistoryDisplay();
-        }
-        
-        function updateHistoryDisplay() {
-            const historyList = document.getElementById("history-list");
-            historyList.innerHTML = '';
-            
-            if (history.length === 0) {
-                historyList.innerHTML = '<li class="no-history">No generations yet</li>';
-                return;
-            }
-            
-            history.forEach(entry => {
-                const listItem = document.createElement('li');
-                
-                // Format the time
-                const time = entry.timestamp.toLocaleTimeString();
-                
-                listItem.innerHTML = `
-                    <span class="history-range">${entry.min}-${entry.max}</span>
-                    <span class="history-result">→ <strong>${entry.result}</strong></span>
-                    <span class="history-time">${time}</span>
-                `;
-                
-                historyList.appendChild(listItem);
-            });
-        }
-        
-        // Initialize history display
-        updateHistoryDisplay();
-        
-        // Add event listener for Enter key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
-                randomNumber();
-            }
-        });
-        
-        // Generate a number on load with default values
-        window.addEventListener('load', function() {
-            randomNumber();
-        });
-    </script>
-</body>
+/* Intro Section */
+.intro-section {
+    text-align: center;
+    margin-bottom: 40px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
-</html>
+.intro-section h2 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--accent);
+    margin-bottom: 15px;
+    font-size: 32px;
+}
 
+.intro-section p {
+    font-size: 18px;
+    opacity: 0.9;
+    margin-bottom: 10px;
+}
+
+/* Body Section */
+.body-sect {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+/* Card Styles */
+.card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+    position: relative;
+    overflow: hidden;
+}
+
+.card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(45deg, var(--primary), transparent);
+    border-radius: 0 0 0 100px;
+}
+
+.card h3 {
+    color: var(--accent);
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+    display: inline-block;
+}
+
+.card h3::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: var(--secondary);
+    border-radius: 3px;
+}
+
+/* Input Styles */
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--accent);
+}
+
+.input-group input {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.2);
+    color: var(--text);
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.3);
+}
+
+/* Button Styles */
+.button-container {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.generate-btn {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    border: none;
+    padding: 16px 35px;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.generate-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(138, 43, 226, 0.6);
+}
+
+.generate-btn:active {
+    transform: translateY(0);
+}
+
+.generate-btn i {
+    margin-right: 10px;
+}
+
+/* Result Section */
+.result-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.result-label {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: var(--accent);
+}
+
+.number-text {
+    font-size: 42px;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent), var(--primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+/* History Section */
+.history-section {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    max-width: 1000px;
+    margin: 0 auto 40px;
+}
+
+.history-section h3 {
+    color: var(--accent);
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    align-items: center;
+}
+
+.history-section h3 i {
+    margin-right: 10px;
+}
+
+#history-list {
+    list-style: none;
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+#history-list li {
+    padding: 10px 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#history-list li:last-child {
+    border-bottom: none;
+}
+
+.history-range {
+    color: var(--accent);
+    font-weight: 500;
+}
+
+.history-result {
+    font-weight: 700;
+    color: var(--success);
+}
+
+.history-time {
+    font-size: 12px;
+    opacity: 0.7;
+}
+
+/* Features Section */
+.features-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.feature-card {
+    background: var(--card-bg);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    flex: 1;
+    min-width: 250px;
+    max-width: 300px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-card i {
+    font-size: 40px;
+    color: var(--accent);
+    margin-bottom: 15px;
+}
+
+.feature-card h4 {
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 10px;
+    color: var(--secondary);
+}
+
+/* Footer */
+footer {
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    padding: 25px 0;
+    text-align: center;
+    color: white;
+    margin-top: auto;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .body-sect {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 100%;
+    }
+
+    .header-section h1 {
+        font-size: 24px;
+    }
+
+    .intro-section h2 {
+        font-size: 28px;
+    }
+
+    .number-text {
+        font-size: 32px;
+        min-height: 80px;
+    }
+}
+
+/* Animation */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.pulse {
+    animation: pulse 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-out;
+}
 
 
     </style>
